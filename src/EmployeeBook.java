@@ -1,64 +1,61 @@
 public class EmployeeBook {
-    private static Employee[] employers;
-    // Объявили массив EmployeeBook, реализуемый в классе EmployeeBook
-    private static int size;
+    private final Employee[] employees;
+    // Объявили массив Contact, реализуемый в классе Contact
+    private int size;
     // Объявили свойство size (размер)
 
     public EmployeeBook() {
-        this.employers = new Employee[10];
-        // Задали массиву длину — 10
+        this.employees = new Employee[10];
+        // Задали массиву Contact длину — 10
     }
 
-    // Реализуем метод (создать):
-    public void addEmployer() {
-        if (size >= employers.length) {
+    // Реализуем метод addContact (создать контакт):
+    public void addWorker(String workerFio, String department) {
+        if (size >= employees.length) {
             System.out.println("Нельзя добавить контакт, закончилось место");
         }
-        Employee newEmployers = new Employee(Employee.getEmployeeName(), Employee.getDepartment(), Employee.getSalary());
-        employers[size++] = newEmployers;
+        Employee newEmployee = new Employee(workerFio, department);
+        employees[size++] = newEmployee;
     }
 
-    // Реализуем метод удалить
+    // Реализуем метод removeContact (удалить контакт)
     // Метод сдвигает массив влево на ячейку, удаляя ячейку под номером i
-    public void removeEmployer(Employee employeeName) {
-        for (int i = 0; i < employers.length; i++) {
-            if (employers[i].getEmployeeName().equals(employeeName)) {
-                System.out.println(employers[i].getEmployeeName() + " удален");
-                System.arraycopy(employers, i + 1, employers, i, size - i - 1);
-                employers[size - 1] = null;
+    public void removeWorker(String workerFio) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getFio().equals(workerFio)) {
+                System.out.println(employees[i].getFio() + " удален");
+                System.arraycopy(employees, i + 1, employees, i, size - i - 1);
+                employees[size - 1] = null;
                 size--;
                 return;
             }
         }
     }
 
-    // Реализуем метод найти
-    public static void findEmployers(String employeeName) {
+    // Реализуем метод findContact (найти контакт)
+    public void findWorker(String workerFio) {
         for (int i = 0; i < size; i++) {
-            Employee employer = employers[i];
-            if (employer.getEmployeeName().equals(employeeName)) {
-                System.out.println(employer.getEmployeeName() + ": " + employer.getDepartment() + ": " + employer.getSalary());
+            Employee employee = employees[i];
+            if (employee.getFio().equals(workerFio)) {
+                System.out.println(employee.getFio() + ": " + employee.getDepartment());
                 return;
             }
         }
-        System.out.println(employeeName + " не найден");
+        System.out.println(workerFio + " не найден");
     }
 
-    // Реализуем метод распечатать
-    public static void printAllEmployers() {
+    // Реализуем метод printAllContacts (распечатать все контакты)
+    public void printAllWorkers() {
         for (int i = 0; i < size; i++) {
-            Employee employer = employers[i];
-            System.out.println(employer.getEmployeeName() + ": " + employer.getDepartment() + ": " + employer.getSalary());
+            Employee employee = employees[i];
+            System.out.println(employee.getFio() + ": " + employee.getDepartment());
         }
     }
 
     // Реализуем метод getCurrentSize (получить текущий размер)
-    public static int getCurrentSize() {
+    public int getCurrentSize() {
         return size;
     }
-
-    public static void addEmployer(String employeeName, int i, double i1) {
-    }
-
 }
+
 
