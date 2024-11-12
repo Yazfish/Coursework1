@@ -2,11 +2,11 @@ import java.util.Objects;
 
 public class Employee {
     private int id;
-    private static String employeeName;
-    private static int department;
-    private static double salary;
+    private String employeeName;
+    private int department;
+    private double salary;
 
-    private static int idGen = 0;
+    private static int idGen = 1;
 
     public Employee(String employeeName, int department, double salary) {
         id = idGen++;
@@ -16,25 +16,30 @@ public class Employee {
     }
 
     public int getId() {
+
         return id;
     }
 
-    public static String getEmployeeName() {
+    public String getEmployeeName() {
+
         return employeeName;
     }
 
-    public static int getDepartment() {
+    public int getDepartment() {
         return department;
     }
 
-    public static double getSalary() {
+    public double getSalary() {
         return salary;
     }
 
     public void setSalary(double salary) {
+
         this.salary = salary;
     }
+
     public void setDepartment(int department) {
+
         this.department = department;
     }
 

@@ -4,32 +4,74 @@
 //
 public class Main {
     public static void main(String[] args) {
-        //EmployeeBook employeeBook = new EmployeeBook();
+        Employee[] worker = new Employee[6];
 
-        EmployeeBook.addEmployer("Иванов Иван Иванович", 1, 1020);
-        EmployeeBook.addEmployer("Иванов Петр Иванович", 2, 1040);
-        EmployeeBook.addEmployer("Сергеев Иван Андреевич", 3, 1100);
-        EmployeeBook.addEmployer("Петров Алексей Григорьевич", 4, 1600);
-        EmployeeBook.addEmployer("Васечкин Иван Макарович", 5, 1900);
-        EmployeeBook.addEmployer("Иванов Иван Капусткин", 1, 1650);
-        EmployeeBook.printAllEmployers();
-        // Распечатываем все контакты
-        System.out.println("Всего сотрудников: " + EmployeeBook.getCurrentSize());
-        // Распечатываем размер телефонной книги
+        worker[0] = new Employee("Иванов Иван Иванович", 1, 2020);
+        worker[1] = new Employee("Иванов Петр Иванович", 2, 1040);
+        worker[2] = new Employee("Сергеев Иван Андреевич", 3, 1100);
+        worker[3] = new Employee("Петров Алексей Григорьевич", 4, 1600);
+        worker[4] = new Employee("Васечкин Иван Макарович", 5, 1900);
+        worker[5] = new Employee("Иванов Иван Константинович", 1, 3650);
+
+        for (Employee workers : worker) {
+            System.out.println(workers);
+        }
         System.out.println();
 
-        EmployeeBook.findEmployers("Иван Иванович Иванов");
-        // Ищем контакт Иванов Иван4
+        // Сумма ЗП
+
+        double sum = 0d;
+        for (Employee salary : worker) {
+            sum = sum + salary.getSalary();
+        }
+        System.out.println("Сумма затрат на ЗП за месяц составила " + sum + " рублей.");
         System.out.println();
 
-        //employeeBook.removeEmployer("Иван Иванович Иванов");
-        // Удаляем контакт Иванов Иван4
-        EmployeeBook.findEmployers("Иван Иванович Иванов");
-        // Ищем контакт Иванов Иван4
-        EmployeeBook.printAllEmployers();
-        // Снова распечатываем все контакты
-        System.out.println("Всего сотрудников: " + EmployeeBook.getCurrentSize());
-        // Снова распечатываем размер телефонной книги
+        // мин ЗП
+
+        Employee resultMin = worker[0];
+        if (worker[0] != null) {
+            double minSalary = worker[0].getSalary();
+            for (Employee emplMinSal : worker) {
+                if (emplMinSal.getSalary() < minSalary) {
+                    minSalary = emplMinSal.getSalary();
+                    resultMin = emplMinSal;
+                }
+            }
+        }
+        System.out.println("Минимальная ЗП - " + resultMin);
+        System.out.println();
+
+        // макс зарплата
+
+        Employee resultMax = worker[0];
+        double maxSalary = worker[0].getSalary();
+        for (Employee emplMaxSal : worker) {
+            if (emplMaxSal.getSalary() > maxSalary) {
+                maxSalary = emplMaxSal.getSalary();
+                resultMax = emplMaxSal;
+            }
+        }
+        System.out.println("Максимальная ЗП - " + resultMax);
+        System.out.println();
+
+        //Средняя Зп
+
+        double sum1;
+        sum1 = sum / worker.length;
+        System.out.println("Среднее значение ЗП за месяц составила " + sum1 + " рублей.");
+        System.out.println();
+
+        // Список имен
+
+        String name;
+        for (Employee fio : worker) {
+            name = fio.getEmployeeName();
+            System.out.println(name);
+
+        }
     }
-
 }
+
+
+
